@@ -1,0 +1,251 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"file",
+				"fileatime"
+			],
+			[
+				"para",
+				"paragraphs"
+			],
+			[
+				"tex",
+				"text2"
+			],
+			[
+				"sen",
+				"sentences_dic"
+			],
+			[
+				"json",
+				"json_encode"
+			],
+			[
+				"gz",
+				"gzcompress"
+			],
+			[
+				"simi",
+				"similar_text"
+			],
+			[
+				"var",
+				"var_dump"
+			],
+			[
+				"array_",
+				"array_intersect"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"",
+				"Indentation: Convert to Spaces"
+			]
+		],
+		"width": 392.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/var/app/reg-snkpk/application/core/MY_Controller.php",
+		"/var/app/reg-snkpk/application/config/database.php",
+		"/var/app/reg-snkpk/application/libraries/Form.php",
+		"/var/app/reg-snkpk/application/config/config.php",
+		"/var/app/reg-snkpk/application/config/guest/signup.php",
+		"/var/app/e-project/application/config/form_validation.php",
+		"/var/app/reg-snkpk/application/config/form_validation.php",
+		"/var/app/e-project/application/controllers/auth/Register.php",
+		"/var/app/e-project/application/libraries/Post.php",
+		"/var/app/myApp/application/core/MY_Controller.php",
+		"/var/app/myApp/application/config/admin/post.php",
+		"/zephir/utils/analize/Sumarizer.php",
+		"/var/app/e-project/application/controllers/Image.php",
+		"/var/app/e-project/application/core/MY_Controller.php",
+		"/var/app/e-project/application/libraries/Grid.php",
+		"/var/app/e-project/application/config/student/report/project.php",
+		"/var/app/e-project/application/language/english/label_lang.php",
+		"/var/app/e-project/application/config/student/project.php",
+		"/var/app/e-project/application/config/member.php",
+		"/var/app/e-project/application/views/template.php",
+		"/var/app/e-project/application/controllers/panel/Sidebar.php",
+		"/var/app/e-project/application/controllers/panel/Auth.php",
+		"/var/app/e-project/application/controllers/auth/Login.php",
+		"/var/app/e-project/application/models/Users.php",
+		"/var/app/e-project/application/language/english/menu_lang.php",
+		"/var/app/e-project/application/language/english/icon_lang.php",
+		"/var/app/e-project/application/controllers/ImgInfo.php",
+		"/zephir/utils/test.php",
+		"/zephir/utils/Analize/Sumarizer.php",
+		"/var/app/e-project/application/config/database.php",
+		"/zephir/utils/utils/summarizer.zep",
+		"/var/app/e-project/public/info.php",
+		"/var/app/phalcon_dev/public/index.php",
+		"/var/app/phalcon_dev/app/controllers/IndexController.php",
+		"/var/app/phalcon_dev/app/controllers/BaseController.php",
+		"/var/app/phalcon_dev/app/views/index.phtml",
+		"/var/app/e-project/application/core/MY_Model.php",
+		"/var/app/e-project/application/config/student/peerAssessment/performance.php",
+		"/var/app/e-project/application/config/student/peerAssessment/project.php",
+		"/var/app/e-project/public/assets/js/function.js",
+		"/var/app/e-project/public/assets/css/styles.css",
+		"/zephir/utils/utils/greeting.zep",
+		"/var/app/e-project/application/libraries/Summarizer.php",
+		"/var/app/smansa/public/index.php",
+		"/var/app/smansa/application/third_party/MX/Loader.php",
+		"/var/app/ojs/ojs-3.0.2/index.php",
+		"/var/app/ojs/ojs-3.0.2/lib/pkp/includes/bootstrap.inc.php",
+		"/var/app/system/language/english/db_lang.php",
+		"/var/app/e-project/public/test.php",
+		"/var/app/e-project/public/index.html",
+		"/var/app/e-project/public/assets/js/event.js",
+		"/var/app/e-project/application/config/teacher/group/team.php",
+		"/var/app/smansa/application/config/database.php",
+		"/var/app/e-project/public/api.html",
+		"/var/app/e-project/public/jsPDF/index.html"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"data",
+			"contr",
+			"dir(",
+			"var_",
+			"ec",
+			"var",
+			"ech",
+			"var_d",
+			"strt",
+			"$sentence",
+			"summa",
+			"fop",
+			"		$",
+			".dat",
+			"sendF",
+			"<p>",
+			"_ci_object_to_array",
+			"sear",
+			"cked",
+			"cke",
+			"close",
+			"clos",
+			"asses"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 176.0,
+	"status_bar_visible": true
+}
