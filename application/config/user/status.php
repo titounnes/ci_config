@@ -1,9 +1,22 @@
-<?php
+<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 
+/*$config['flow'] = 
+[
+	'status' => [
+		'label' => 'Status Pendaftaran',
+		'url' => 'user/report2column/status#status',
+		'current' => 1,
+	],
+	'print' => [
+		'label' => 'Cetak Bukti Pembayaran',
+		'url' => 'user/report2column/factur#status'
+	],
+];
+*/
 $config['report2column'] = 
 [
 	'argument' => [
-		'select' => 'b.id,concat(b.pre_name," ", b.full_name, if(b.post_name IS NULL,"",concat(", ",b.post_name))) as name, concat(b.affiliation, " / ",b.address) as office, concat(u.email, " / ",b.phone) as contact, m.name as membership, if(um.confirm=1,"Sudah|dikonfirmasi","Belum|dikonfirmasi") as confirm',
+		'select' => 'concat(b.pre_name," ", b.full_name, if(b.post_name IS NULL,"",concat(", ",b.post_name))) as name, concat(b.affiliation, " / ",b.address) as office, concat(u.email, " / ",b.phone) as contact, m.name as membership, if(um.confirm=1,"Sudah|dikonfirmasi","Belum|dikonfirmasi") as confirm, concat( b.full_name, "#",m.fee,"#",m.money,"#",m.name,"#") as data',
 		'table' => 'user u',
 		'join' => [
 			['biodata b','u.id=b.id','left'],
@@ -15,17 +28,14 @@ $config['report2column'] =
 		]
 	],
 	'format' => [
+		'button' => [
+			'print' => [
+				'icon' => 'print',
+				'action' => 'printing(\'factur\')',
+				'label' => 'Cetak Bukti Pembayaran',
+			],
+		],	
 		'title' => 'Status Pendaftaran Anda',
-		'anchor' => [
-			'submit' => [
-				'action' => '/user/submit/biodata',
-				'label' => 'Submit',
-			],
-			'back' => [
-				'action' => '',
-				'label' => 'Home',
-			],
-		],
 		'html' => [
 			'name' => [
 				'data' => 'field',
@@ -57,6 +67,11 @@ $config['report2column'] =
 				'label' => 'Berkas Artikel',
 				'url' => 'user/download/fullpapper',
 			],
+			'data' => [
+				'data' => 'note',
+				'label' => '',
+			],
+
 		],	
 	],
 ];

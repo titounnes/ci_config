@@ -5,7 +5,8 @@ class User extends MY_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		if($this->session->logedIn==false)
+			
+		if($this->session->logedIn==false ||  !in_array(3, $this->session->roles))
 		{
 			redirect('/');
 			return false;

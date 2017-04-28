@@ -3,6 +3,9 @@
 	[
 		{
 			"path": "/var/app/reg-snkpk"
+		},
+		{
+			"path": "/var/app/e-project"
 		}
 	]
 }

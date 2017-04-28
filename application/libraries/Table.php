@@ -2,38 +2,46 @@
 
 class Table {
 
-	protected $title;
-	protected $header = [];
+	protected $header;
+	protected $data;
+	protected $format;
 	protected $rows = [];
 	protected $id = [];
 	protected $anchor;
 	protected $currentRow;
+	protected $flow;
 
 	function __construct()
 	{
 		$this->CI =& get_instance();
+		$this->CI->load->library(['session','layout','encryption']);
+		
 	}
-
-	public function setTitle($title='Table Tanpa Judul')
+	
+	public function setFlow($flow)
 	{
-		$this->title = $title;
+		$this->flow = $flow;
 	}
 
-	public function setHeader($header = '')
+
+	public function setContent($data)
 	{
-		if($header != '')
-		{
-			array_push($this->header, $header);
-		}
+		$this->data = $data;
 	}
 
-	public function newRow($id)
+	public function setFormat($format)
+	{
+		$this->format = $format;
+	}
+
+
+	private function newRow($id)
 	{
 		$this->currentRow = count($this->rows);
 		$this->id[$this->currentRow] = $id;
 	}
 
-	public function setCell($data = '')
+	private function setCell($data = '')
 	{
 		if(isset($this->rows[$this->currentRow]))
 		{
@@ -46,52 +54,74 @@ class Table {
 	}
 
 
-	public function setAnchor($anchor)
+	private function setAnchor($anchor)
 	{
 		if($this->anchor =='')
 		{
 			$this->anchor= $anchor;	
 		}  
 
-		/*foreach($anchor as $k=>$a)
-		{
-			var_dump($k);
-			$this->rows[$this->currentRow] .= '<td><a class="btn btn-success" href="/' . $a .'/'. $this->id[$this->currentRow] . '"><?=$k?></a></td>';	
-		}*/
 	}
 
 	public function render()
 	{
-		?>
-		<html>
-			<head>
-				<title> myApp - <?= $this->title ?> </title>
-				<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-			</head>
-			<body>
-				<table class="table table-bordered">
-					<thead>
-						<caption><?= $this->title ?></caption>
-						<caption><a class="btn btn-info" href="/<?= $this->anchor['edit'] ?>/">Insert</a></caption>
-						<?php foreach($this->header as $h): ?>
-							<th><?= $h ?></th>
-						<?php endforeach ?>
-					</thead>
-					<tbody>
-						<?php foreach($this->rows as $k=>$r): ?>
-						<tr><?= $r ?>
-							<td>
-								<a class="btn btn-success" href="/<?= $this->anchor['edit'] ?>/<?= $this->id[$k] ?>">Edit</a>
-							</td>
-							<td>
-								<a class="btn btn-success" href="/<?= $this->anchor['read'] ?>/<?= $this->id[$k] ?>">Read</a>
-							</td>
-						</tr>
-						<?php endforeach ?>
-					</tbody>
-				</table>
-			</body>
-		</html>
-		<?php
+		$output = '';
+						
+		if(is_array($this->flow) and count($this->flow)>1)
+		{
+			$output .= '<div id="time-line">';
+			foreach($this->flow as $f)
+			{
+				$output .= '<a class="btn btn-'.(isset($f['current']) ? 'info" disabled' : 'warning"').' href="/'.$f['url'].'#">'. $f['label'].'</a> &nbsp;';
+			}
+			$output .= '</div>';
+		}
+
+		$ids = explode('/',$this->format['anchor']['submit']['action']);
+		$id = $ids[count($ids)-1];
+
+		$output .= '<h3>'. $this->format['title'] .' </h3>';
+
+		$output .= '<table class="table table-bordered">';
+		$output .= '<thead><tr>';
+		foreach($this->format['header'] as $h)
+		{
+			$output .= '<th>'. $h .'</th>';
+		}
+
+		$output .= '<tbody>';
+		foreach($this->data as $k=>$d)
+		{
+			$output .= '<tr>';
+			foreach($this->format['body'] as $name=>$b)
+			{
+				$output .= '<td>';
+				switch($b['label'])
+				{
+					case 'key' : 
+						$output .= $k+1;
+						break; 
+					case 'data' :
+						$output .= str_replace('#','<br>',str_replace('|',' ',$d->{$name}));
+						break;
+					case 'image' :
+						$file = file_exists(APPPATH . 'writeable/'. $d->{$name} .'.png');
+						$path = urlencode($this->CI->encryption->encrypt($d->{$name}));
+						$output .= $file ? '<img width="240px" src="/'.$b['url'].'/'. $path.'"/>':'';
+						break;
+					case 'action' :
+						$output .= '<a class="btn btn-success" href="/'.$b['url'].$d->{$b['param']}.'" onclick=\"window.open(src="")\">'.$b['caption'].'</a>';
+						break;
+				}
+				$output .= '</td>';	
+			}
+			$output .= '</tr>';
+		}
+		$output .= '</tbody>';
+
+		$output .= '</tr></thead>';
+		$output .= '</table>';
+		$this->CI->layout->setContent($output);
+		$this->CI->layout->render();
 	}
 }

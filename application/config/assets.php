@@ -8,36 +8,27 @@ $config['css'] = '<link href="/assets/css/style.css?v='. filemtime(FCPATH.'asset
 
 $config['author'] = [
 	'biodata' => [
-		'label' => 'Biodata',
+		'label' => 'Formulir',
 		'action' => 'user/form/biodata',
 	],
-	'membership' => [
-		'label' => 'Kepesertaan',
-		'action' => 'user/form/membership'
-	],
-	'payment' => [
-		'label' => 'Pembayaran',
-		'action' => 'user/form/payment'
-	],
-	'struct' => [
-		'label' => 'Struk',
-		'action' => 'user/form/struct'
-	],
 	'abstrak' => [
-		'label' => 'Abstrak',
+		'label' => 'Unggah Dokumen',
 		'action' => 'user/form/abstract'
-	],
-	'fullpapper' => [
-		'label' => 'Artikel',
-		'action' => 'user/form/fullpapper'
 	],
 	'report' => [
 		'label' => 'Status',
 		'action' => 'user/report2column/status'
 	],
-	'logout' => [
-		'label' => 'Logout',
-		'action' => 'user/signout'
+];
+
+$config['teller'] = [
+	'registrar' => [
+		'label' => 'Pendaftar',
+		'action' => 'teller/table/awaitingMember'
+	],
+	'journal' => [
+		'label' => 'Laporan',
+		'action' => 'teller/table/report'
 	],
 ];
 
@@ -50,4 +41,9 @@ $config['logedOut'] = [
 		'label' => 'Login',
 		'action' => 'guest/form/login'
 	],
+];
+
+$config['logedIn'] = [
+	'label' => 'Logout',
+	'action' => 'signout'
 ];

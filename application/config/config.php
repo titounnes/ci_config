@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-//$config['base_url'] = 'http://'.$_SERVER['SERVER_NAME'].':8088/';
+//$config['base_url'] = '';
 $config['base_url'] = 'http://'.$_SERVER['SERVER_NAME'].'/';
 
 /*
@@ -357,7 +357,7 @@ $config['encryption_key'] = '6hdyk5oQ5$#@87)!';
 |
 */
 $config['sess_driver'] = 'database';
-$config['sess_cookie_name'] = 'pblaams';
+$config['sess_cookie_name'] = 'reg-snkpk';
 $config['sess_expiration'] = 0;
 $config['sess_save_path'] = 'ci_sessions';
 //$config['sess_save_path'] = '/usr/share/nginx/html/smansa/ci_sessions';

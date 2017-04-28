@@ -1,4 +1,17 @@
-<?php
+<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+
+$config['flow'] = 
+[
+	'abstract' => [
+		'label' => 'Abstrak',
+		'current' => 1,
+		'url' => 'user/form/abstract#abstract'
+	],
+	'fullpapper' => [
+		'label' => 'Naskah Lengkap',
+		'url' => 'user/form/fullpapper#abstract'
+	],
+];
 
 $config['form'] = 
 [

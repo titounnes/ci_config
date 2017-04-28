@@ -1,4 +1,25 @@
-<?php
+<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+
+$config['flow'] = 
+[
+	'biodata' => [
+		'label' => 'Data Diri',
+		'url' => 'user/form/biodata#biodata',
+		'current' => 1,
+	],
+	'membership' => [
+		'label' => 'Partisipasi',
+		'url' => 'user/form/membership#biodata'
+	],
+	'payment' => [
+		'label' => 'Pembayaran',
+		'url' => 'user/form/payment#biodata'		
+	],
+	'struct' => [
+		'label' => 'Struk',
+		'url' => 'user/form/struct#biodata'
+	],
+];
 
 $config['form'] = 
 [
@@ -22,9 +43,6 @@ $config['form'] =
 			],
 		],
 		'html' => [
-			'id' => [
-				'type' => 'hidden',
-			],
 			'pre_name' => [
 				'type' => 'text',
 				'place-holder' => 'Gelar Di Depan Nama',
@@ -32,7 +50,7 @@ $config['form'] =
 			],
 			'full_name' => [
 				'type' => 'text',
-				'place-holder' => 'Nama lengkap',
+				'place-holder' => 'Nama lengkap*',
 				'label' => 'Nama Lengkap',
 			],
 			'post_name' => [
@@ -42,19 +60,23 @@ $config['form'] =
 			],
 			'affiliation' => [
 				'type' => 'textarea',
-				'label' => 'Nama Institusi',
+				'label' => 'Nama Institusi*',
 				'place-holder' => 'Nama Institusi',	
 			],
 			'address' => [
 				'type' => 'textarea',
-				'label' => 'Alamat Institusi',
+				'label' => 'Alamat Institusi*',
 				'place-holder' => 'Alamat Institusi',
 			],
 			'phone' => [
 				'type' => 'phone',
-				'label' => 'Nomor Telpon',
+				'label' => 'Nomor Telpon*',
 				'place-holder' => 'Nomor Telpon',
 			],
+			'require' => [
+				'type' => '',
+				'label' => 'Semua yang bertanda * wajib diisi',
+			],	
 		],	
 	],
 ];

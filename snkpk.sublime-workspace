@@ -4,6 +4,106 @@
 		"selected_items":
 		[
 			[
+				"con",
+				"consistency"
+			],
+			[
+				"strt",
+				"strtolower"
+			],
+			[
+				"sim",
+				"similar"
+			],
+			[
+				"stri",
+				"strip_tags"
+			],
+			[
+				"summ",
+				"summarizer"
+			],
+			[
+				"summari",
+				"summaries"
+			],
+			[
+				"summa",
+				"summary"
+			],
+			[
+				"edi",
+				"editorId"
+			],
+			[
+				"fu",
+				"fullpapper"
+			],
+			[
+				"ab",
+				"abstract"
+			],
+			[
+				"member",
+				"membership"
+			],
+			[
+				"gly",
+				"glyphicon-download-alt"
+			],
+			[
+				"gl",
+				"glyphicon"
+			],
+			[
+				"url",
+				"urldecode"
+			],
+			[
+				"str_re",
+				"str_replace"
+			],
+			[
+				"cho",
+				"chown"
+			],
+			[
+				"config",
+				"configPath"
+			],
+			[
+				"base",
+				"base_url"
+			],
+			[
+				"end",
+				"endforeach"
+			],
+			[
+				"head",
+				"heading"
+			],
+			[
+				"form",
+				"form_validation"
+			],
+			[
+				"add",
+				"address"
+			],
+			[
+				"isN",
+				"is_null"
+			],
+			[
+				"Ba",
+				"BaseModel"
+			],
+			[
+				"ar",
+				"argument"
+			],
+			[
 				"file",
 				"fileatime"
 			],
@@ -43,6 +143,38 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "/var/app/e-project/application/core/MY_Controller.php",
+			"settings":
+			{
+				"buffer_size": 43374,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/var/app/e-project/public/assets/js/function.js",
+			"settings":
+			{
+				"buffer_size": 35678,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/var/app/e-project/public/assets/js/event.js",
+			"settings":
+			{
+				"buffer_size": 33415,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/var/app/e-project/application/config/student/project.php",
+			"settings":
+			{
+				"buffer_size": 5700,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -72,20 +204,67 @@
 	},
 	"file_history":
 	[
-		"/var/app/reg-snkpk/application/core/MY_Controller.php",
-		"/var/app/reg-snkpk/application/config/database.php",
-		"/var/app/reg-snkpk/application/libraries/Form.php",
+		"/var/app/reg-snkpk/application/config/teller/awaitingMember.php",
+		"/var/app/reg-snkpk/application/config/assets.php",
+		"/var/app/reg-snkpk/application/libraries/Table.php",
+		"/var/app/reg-snkpk/application/config/teller/approvedMember.php",
 		"/var/app/reg-snkpk/application/config/config.php",
+		"/var/app/myApp/application/core/MY_Controller.php",
+		"/var/app/reg-snkpk/application/controllers/Writer.php",
+		"/var/app/reg-snkpk/application/config/writer/post.php",
+		"/var/app/reg-snkpk/application/template/configForm.tpl",
+		"/var/app/reg-snkpk/application/config/bendahara/test.php",
+		"/var/app/reg-snkpk/application/controllers/user/post.php",
+		"/var/app/e-project/public/assets/js/event.js",
+		"/var/app/e-project/public/assets/js/function.js",
+		"/var/app/e-project/application/core/MY_Controller.php",
+		"/var/app/reg-snkpk/application/libraries/Layout.php",
+		"/var/app/reg-snkpk/application/config/guest/login.php",
+		"/var/app/reg-snkpk/application/core/MY_Controller.php",
+		"/var/app/e-project/application/controllers/Image.php",
+		"/var/app/reg-snkpk/application/config/user/biodata.php",
+		"/var/app/reg-snkpk/application/controllers/User.php",
+		"/var/app/reg-snkpk/application/controllers/Teller.php",
+		"/var/app/reg-snkpk/application/config/user/status.php",
+		"/var/app/reg-snkpk/application/config/user/abstract.php",
+		"/var/app/reg-snkpk/application/libraries/Form.php",
+		"/var/app/reg-snkpk/public/assets/css/style.css",
+		"/var/app/reg-snkpk/application/libraries/Confirmation.php",
+		"/var/app/reg-snkpk/application/config/user/membership.php",
+		"/var/app/reg-snkpk/application/config/user/payment.php",
+		"/var/app/reg-snkpk/application/config/user/struct.php",
+		"/var/app/reg-snkpk/application/config/user/fullpapper.php",
+		"/var/app/reg-snkpk/application/libraries/Table2Column.php",
+		"/var/app/reg-snkpk/application/controllers/Generate.php",
+		"/var/app/reg-snkpk/application/template/controller.tpl",
+		"/var/app/reg-snkpk/application/config/foo/bar.php",
+		"/var/app/reg-snkpk/application/template/configUpload.tpl",
+		"/var/app/reg-snkpk/application/template/config2Column.tpl",
+		"/var/app/reg-snkpk/application/config/database.php",
+		"/var/app/reg-snkpk/application/template/payment.tpl",
+		"/var/app/reg-snkpk/application/config/user/factur.php",
+		"/var/app/reg-snkpk/application/controllers/Download.php",
+		"/var/app/reg-snkpk/application/controllers/Build.php",
+		"/var/app/reg-snkpk/application/controllers/Operator.php",
+		"/var/app/reg-snkpk/application/controllers/Guest.php",
+		"/var/app/reg-snkpk/application/config/operator/payment.php",
+		"/var/app/e-project/application/config/config.php",
 		"/var/app/reg-snkpk/application/config/guest/signup.php",
+		"/var/app/smansa/application/modules/teacher/controllers/Tool.php",
+		"/var/app/reg-snkpk/application/config/autoload.php",
+		"/var/app/reg-snkpk/application/controllers/Welcome.php",
+		"/var/app/reg-snkpk/application/helpers/layout_helper.php",
+		"/var/app/reg-snkpk/application/views/welcome_message.php",
+		"/var/app/e-project/application/libraries/Form.php",
+		"/var/app/reg-snkpk/application/core/MY_Model.php",
+		"/var/app/e-project/application/controllers/auth/Logout.php",
+		"/var/app/e-project/application/controllers/auth/Register.php",
+		"/var/app/e-project/application/controllers/auth/Login.php",
 		"/var/app/e-project/application/config/form_validation.php",
 		"/var/app/reg-snkpk/application/config/form_validation.php",
-		"/var/app/e-project/application/controllers/auth/Register.php",
 		"/var/app/e-project/application/libraries/Post.php",
-		"/var/app/myApp/application/core/MY_Controller.php",
 		"/var/app/myApp/application/config/admin/post.php",
 		"/zephir/utils/analize/Sumarizer.php",
-		"/var/app/e-project/application/controllers/Image.php",
-		"/var/app/e-project/application/core/MY_Controller.php",
 		"/var/app/e-project/application/libraries/Grid.php",
 		"/var/app/e-project/application/config/student/report/project.php",
 		"/var/app/e-project/application/language/english/label_lang.php",
@@ -94,7 +273,6 @@
 		"/var/app/e-project/application/views/template.php",
 		"/var/app/e-project/application/controllers/panel/Sidebar.php",
 		"/var/app/e-project/application/controllers/panel/Auth.php",
-		"/var/app/e-project/application/controllers/auth/Login.php",
 		"/var/app/e-project/application/models/Users.php",
 		"/var/app/e-project/application/language/english/menu_lang.php",
 		"/var/app/e-project/application/language/english/icon_lang.php",
@@ -111,7 +289,6 @@
 		"/var/app/e-project/application/core/MY_Model.php",
 		"/var/app/e-project/application/config/student/peerAssessment/performance.php",
 		"/var/app/e-project/application/config/student/peerAssessment/project.php",
-		"/var/app/e-project/public/assets/js/function.js",
 		"/var/app/e-project/public/assets/css/styles.css",
 		"/zephir/utils/utils/greeting.zep",
 		"/var/app/e-project/application/libraries/Summarizer.php",
@@ -122,7 +299,6 @@
 		"/var/app/system/language/english/db_lang.php",
 		"/var/app/e-project/public/test.php",
 		"/var/app/e-project/public/index.html",
-		"/var/app/e-project/public/assets/js/event.js",
 		"/var/app/e-project/application/config/teacher/group/team.php",
 		"/var/app/smansa/application/config/database.php",
 		"/var/app/e-project/public/api.html",
@@ -144,6 +320,34 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"sendP",
+			"readmo",
+			"rea",
+			"readm",
+			"respons",
+			"respos",
+			"sendP",
+			"cke",
+			"tabl",
+			"ex",
+			"biodata",
+			"user",
+			"abstract",
+			"user",
+			"biodata",
+			"user",
+			"abstr",
+			"error",
+			"abstract",
+			"conf",
+			"abstract",
+			"uplo",
+			"opti",
+			"confi",
+			"var_",
+			"form",
+			"var_",
+			"ech",
 			"data",
 			"contr",
 			"dir(",
@@ -174,6 +378,15 @@
 		"regex": false,
 		"replace_history":
 		[
+			"**object**",
+			"**actor**",
+			"**object**",
+			"**actor**",
+			"**object**",
+			"**actor**",
+			"errors",
+			"struct",
+			"fullpapper",
 			""
 		],
 		"reverse": false,
@@ -185,8 +398,119 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "/var/app/e-project/application/core/MY_Controller.php",
+					"settings":
+					{
+						"buffer_size": 43374,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								36389,
+								36389
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 23742.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/var/app/e-project/public/assets/js/function.js",
+					"settings":
+					{
+						"buffer_size": 35678,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2513,
+								2513
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1728.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/var/app/e-project/public/assets/js/event.js",
+					"settings":
+					{
+						"buffer_size": 33415,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								128,
+								128
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/var/app/e-project/application/config/student/project.php",
+					"settings":
+					{
+						"buffer_size": 5700,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1756,
+								1756
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],

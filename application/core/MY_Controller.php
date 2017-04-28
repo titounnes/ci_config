@@ -31,42 +31,34 @@ class MY_Controller extends CI_Controller {
 		$data = $this->BaseModel->execute($config['argument'])->row();
 		$table->setData($data);
 		$table->setFormat($config['format']);		
+		$table->setFlow($this->config->item('flow'));
 		
 		$table->render();
 
 	}
 
-	public function list()
+	public function table()
 	{
 		
 		$path = str_replace('_','/',$this->uri->segments[3]);
 		
 		$this->load->config($this->uri->segments[1].'/'.$path);
 		
-		$config = $this->config->item('list');
+		$config = $this->config->item('table');
 
 		$this->load->library('table');
 		
 		$table = new Table;
-		$table->setTitle('Tabel Berita');
-
-		$header = ['No.','Judul','Isi','Edit','Baca'];
-		foreach($header as $h)
-		{
-			$table->setHeader($h);
-		}
+		
+		
 		$this->load->model('BaseModel');
 		
 		$data = $this->BaseModel->execute($config['argument'])->result();
 		
-		foreach($data as $k => $d)
-		{
-			$table->newRow($d->id);
-			$table->setCell($k+1);
-			$table->setCell($d->title);
-			$table->setCell($d->content);
-			$table->setAnchor($config['anchor']);
-		}
+		$table->setformat($config['html']);
+		$table->setContent($data);
+		$table->setFlow($this->config->item('flow'));
+		
 		$table->render();
 
 	}
@@ -118,10 +110,11 @@ class MY_Controller extends CI_Controller {
 		$this->load->config($this->uri->segments[1].'/'.$path);
 		
 		$config = $this->config->item('form');
-
+		
 		if( isset($this->uri->segments[4]))
 		{
 			$this->data['id'] = $this->uri->segments[4];	
+			$this->session->set_userdata('submit_id',$this->data['id']);
 		}
 		else if($this->session->user_id != null)
 		{
@@ -131,7 +124,6 @@ class MY_Controller extends CI_Controller {
 		{
 			$this->data['id'] = '';
 		}
-
 		$data =  new StdClass;
 	
 		$this->session->set_userdata($path, $this->data['id']);
@@ -153,13 +145,13 @@ class MY_Controller extends CI_Controller {
 
 		$form->setData($data, $message);
 		$form->setFormat($config['form']);
+		$form->setFlow($this->config->item('flow'));
 		$form->render();
 	}
 
 	function submit()
 	{
 
-		//mengubah _ menjadi /
 		$this->load->library('form_validation');
 
 		$path = str_replace('_','/',$this->uri->segments[3]);
@@ -168,19 +160,19 @@ class MY_Controller extends CI_Controller {
 		
 		$config = $this->config->item('submit');
 
-
 		foreach($config['validation'] as $v)
 		{
 			$this->form_validation->set_rules($v['field'], $v['label'], $v['rules']);
 		}
 
-		if($this->form_validation->run() === FALSE)
+		$post = [];
+		foreach($config['post'] as $p)
 		{
-			$post = [];
-			foreach($config['post'] as $p)
-			{
-				$post[$p] = $this->input->post($p);
-			}
+			$post[$p] = $this->input->post($p);
+		}
+		
+		if($this->form_validation->run() == FALSE)
+		{
 			$this->session->set_flashdata('set_val', (object) $post);
 			$this->session->set_flashdata('validation_errors', validation_errors());
 			redirect('/' . $config['redirect']['error'] . '/' .$id);
@@ -189,13 +181,20 @@ class MY_Controller extends CI_Controller {
 
 		$this->load->model('BaseModel');
 
-		$rows = $this->BaseModel->execute($config['check'])->num_rows();
+		if(!isset($config['insert']['table']))
+		{
+			$rows=1;
+		}
+		else
+		{
+			$rows = $this->BaseModel->execute($config['check'])->num_rows();
+		}
 
 		if($rows>0)
 		{
 			foreach($config['update']['field'] as $f)
 			{
-				$field[$f] = $this->input->post($f);
+				$field[$f] = $post[$f];
 			}
 				
 			foreach($config['update']['where'] as $k=>$f)
@@ -217,7 +216,7 @@ class MY_Controller extends CI_Controller {
 			$table = $config['insert']['table'];
 			foreach($config['insert']['field'] as $f)
 			{
-				$field[$f] = $this->input->post($f);
+				$field[$f] = $post($f);
 			}
 			if(isset($config['insert']['session']))
 			{
@@ -233,7 +232,7 @@ class MY_Controller extends CI_Controller {
 			$id = $this->BaseModel->insert($config['insert']['table'], $field);
 			$this->session->set_userdata($path, $id);
 		}
-
+		//$this->session->unset_userdata('submit_id');
 		redirect('/' . $config['redirect']['success']);
 	}
 
@@ -258,7 +257,7 @@ class MY_Controller extends CI_Controller {
 		if($this->form_validation->run() === FALSE)
 		{
 			$this->session->set_flashdata('validation_errors', validation_errors());
-			redirect('/' . $config['redirect']['error'] . '/' .$id);
+			redirect('/' . $config['redirect']['error'] );
 			return false;
 		}
 
@@ -288,16 +287,92 @@ class MY_Controller extends CI_Controller {
 					
 			$this->session->set_userdata($user);
 			$this->session->set_flashdata('validation_errors', 'Login Berhasil');
-			redirect('');
+			redirect('/' . $config['redirect']['success']);
 			return false;
-
 		}
-		else
+		
+		$this->session->set_flashdata('validation_errors', 'Password salah');
+		redirect('/' . $config['redirect']['error'] );
+
+	}
+
+	function sendToken()
+	{
+
+		$this->load->library('form_validation');
+		$this->load->library('SendMail');
+		
+		$mail = new SendMail;
+
+		$path = str_replace('_','/',$this->uri->segments[3]);
+		
+		$this->load->config($this->uri->segments[1].'/'.$path);
+		$config = $this->config->item('sendToken');
+		
+		$this->data['email'] = $this->input->post('email');
+
+		foreach($config['validation'] as $v)
 		{
-			$this->session->set_flashdata('validation_errors', 'Password salah');
+			$this->form_validation->set_rules($v['field'], $v['label'], $v['rules']);
+		}
+
+		if($this->form_validation->run() === FALSE)
+		{
+			$this->session->set_flashdata('validation_errors', validation_errors());
 			redirect('/' . $config['redirect']['error'] );
 			return false;
 		}
+		
+
+		$this->load->model('BaseModel');
+
+		$auth = $this->BaseModel->execute($config['argument'])->row();
+		if( $auth==null )
+		{
+			$this->session->set_flashdata('validation_errors', 'Email tidak terdaftar');
+			redirect('/' . $config['redirect']['error'] );
+			return false;
+		}
+		$field['email'] = $auth->email; 
+		
+		if($auth->forgotten_password_code == null || $auth->forgotten_password_time < date('Y-m-d H:i:s') )
+		{
+			
+			$field['forgotten_password_code'] = password_hash($auth->email, PASSWORD_BCRYPT, ['cost' => 12]);
+			$field['forgotten_password_time'] = date('Y-m-d H:i:s', strtotime('+1hours') );
+			
+			$this->BaseModel->update('user', $field, ['email'=>$auth->email]);
+			
+			if( $mail->send($field, $config['sendMail']) )
+			{
+				$this->session->set_flashdata('flash', $field['forgotten_password_time']);
+				$this->session->set_flashdata('validation_errors', 'Login Berhasil');
+				redirect('/' . $config['redirect']['success']);
+				return false;
+			}
+			
+			$this->session->set_flashdata('validation_errors', 'Email gagal dikirim');
+			$this->session->set_flashdata('email', $field['email']);
+			redirect('/' . $config['redirect']['error'] );
+			return false;
+			
+		}
+			
+		$field['forgotten_password_code'] = $auth->forgotten_password_code;
+		$field['forgotten_password_time'] = date('Y-m-d H:i:s', strtotime('+1hours') );
+		
+		$this->BaseModel->update('user', $field, ['email'=>$auth->email]);
+		if( ! $mail->send($field, $config['sendMail']) )
+		{
+			$this->session->set_flashdata('validation_errors', 'Email gagal dikirim');
+			redirect('/' . $config['redirect']['error'] );
+			return false;
+		}
+		
+		$this->session->set_flashdata('flash', $field['forgotten_password_time']);
+		$this->session->set_flashdata('email', $field['email']);
+		$this->session->set_flashdata('validation_errors', 'Login Berhasil');
+		redirect('/' . $config['redirect']['success']);
 	}
 
 	function signup()
@@ -363,35 +438,15 @@ class MY_Controller extends CI_Controller {
 	{
 
 		$path = str_replace('_','/',$this->uri->segments[3]);
-		
 		$this->load->config($this->uri->segments[1].'/'.$path);
-		
 		$config = $this->config->item('confirmation');
-
 		$this->load->library('confirmation');
-		$confirm = new Confirmation;
-
-		if(isset($config['argument']))
-		{
-			$this->load->model('BaseModel');
-			$this->data['id'] = $this->uri->segments[4];
-
-			$data = $this->BaseModel->execute($config['argument'])->row();
-
-			$confirm->setData($data);
 		
-		}
-
+		$confirm = new Confirmation;
 		$confirm->setFormat($config['html']);
+		$confirm->setFlow($this->config->item('flow'));
 		$confirm->render();
 
-	}
-
-	function signout()
-	{
-		$this->session->sess_destroy();
-		$this->session->set_flashdata('validation_errors', 'Anda telah logout');
-		redirect('');			
 	}
 
 	function upload()
@@ -404,6 +459,8 @@ class MY_Controller extends CI_Controller {
 		$config = $this->config->item('upload');
 
 		$this->load->library('upload', $config['upload']);
+
+		$this->load->helper(['file']);
         
         if ( ! $this->upload->do_upload($config['file'])) 
         {
@@ -413,27 +470,28 @@ class MY_Controller extends CI_Controller {
         }
 		
 		$path = $config['upload']['upload_path'];
-
-		$handle = fopen($path. $this->upload->file_name, 'r');
-	    $content = @fread($handle, filesize($path . $this->upload->file_name));
-		fclose($handle);
-	           
-		$file = $path . $this->session->user_id . '.dat';
+		$content = read_file($path. $this->upload->file_name);
 		
-		$handle=fopen($file, 'w');
-		@fwrite($handle,gzcompress($content));
-		fclose($handle);
-	            
-		unlink($path . $this->upload->file_name);
-	       
+		if($config['upload']['allowed_types'] != 'jpg|png')
+		{   
+			$file = $path . $this->session->user_id . '.dat';			
+			write_file($file,gzcompress($content));
+
+		}
+		else
+		{
+			$file = $path . $this->session->user_id . '.png';
+			write_file($file,$content);
+		}
+		unlink($path . $this->upload->file_name);  
 		redirect('/' . $config['redirect']['success']);
-         
 	}
 
 	function download()
 	{
 		$path = str_replace('_','/',$this->uri->segments[3]);
 		$this->load->library('encryption');
+		$this->load->helper('file');
 
 		$target =  $this->encryption->decrypt(urldecode($this->uri->segments[4]));
 
@@ -446,9 +504,9 @@ class MY_Controller extends CI_Controller {
 			return false;
 		}
 		$name = str_replace('/', '_', $target);
-		$file = fopen(APPPATH . 'writeable/'.$target.'.dat','r');
-		$content = @fread($file, filesize(APPPATH . 'writeable/'.$target.'.dat'));
-		fclose($file);
+		
+		$content = read_file(APPPATH . 'writeable/'.$target.'.dat');
+		
 		$this->output->set_header('HTTP/1.0 200 OK')
 			->set_header('HTTP/1.1 200 OK')
 			->set_header('Cache-Control: no-store, no-cache, must-revalidate')
@@ -459,5 +517,34 @@ class MY_Controller extends CI_Controller {
 		    ->set_output(gzuncompress($content));
 	}
 
+	function image()
+	{
+		$this->load->library('encryption');
+		$target =  $this->encryption->decrypt(urldecode($this->uri->segments[3]));
+		$path = APPPATH . 'writeable/'.$target.'.png';
+		$img = imagecreatefrompng($path);
+		header('Content-Type: image/png');
+		imagepng($img);
+		imagedestroy($img);
+	}
+
+	function pdf()
+	{
+
+		$path = str_replace('_','/',$this->uri->segments[3]);
+		
+		$this->load->config($this->uri->segments[1].'/'.$path);
+		
+		$config = $this->config->item('report2column');
+		$this->load->helper('file');
+
+		$content = read_file(APPPATH .'template/'.$path.'.tpl');
+		
+		$this->load->model('BaseModel');
+		$data = $this->BaseModel->execute($config['argument'])->row();
+		
+		$replacement = explode('#', $data->data);
+		echo vsprintf($content, $replacement);
+	}
 }
 

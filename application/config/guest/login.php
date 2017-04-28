@@ -17,8 +17,9 @@ $config['confirmation'] =
 				'label' => 'Login',
 			],
 		],
-		'title' => 'Konfirmasi Pendaftaran',
-		'message' => '<p>Pendaftaran Berhasil</p>',
+		'notif' => 'success',
+		'title' => 'Konfirmasi Login',
+		'message' => '<p>Login Berhasil</p>',
 	],
 ];
 
@@ -29,21 +30,22 @@ $config['form'] =
 		'table' => 'user',
 	],
 	'form' => [
-		'title' => 'Login Peserta Seminar',
+		'title' => 'Login Pengguna',
 		'anchor' => [
-			'submit' => [
-				'action' => '/guest/auth/login',
-				'label' => 'Login',
-			],
 			'back' => [
 				'action' => '',
 				'label' => 'Home',
 			],
+			'submit' => [
+				'action' => 'guest/auth/login',
+				'label' => 'Login',
+			],
+			'forgot' => [
+				'action' => 'guest/form/forgot',
+				'label' => 'Lupa Password',
+			]
 		],
 		'html' => [
-			'id' => [
-				'type' => 'hidden',
-			],
 			'email' => [
 				'type' => 'email',
 				'place-holder' => 'Email valid',
@@ -56,6 +58,11 @@ $config['form'] =
 			],
 		],	
 	],
+	'redirect' => [
+		'success' => 'user/confirmation/biodata',
+		'error' => 'user/form/biodata',
+	],
+
 ];
 
 $config['auth'] = 

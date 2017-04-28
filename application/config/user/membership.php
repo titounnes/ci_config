@@ -1,4 +1,25 @@
-<?php
+<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+
+$config['flow'] = 
+[
+	'biodata' => [
+		'label' => 'Data Diri',
+		'url' => 'user/form/biodata#biodata'
+	],
+	'membership' => [
+		'label' => 'Partisipasi',
+		'url' => 'user/form/membership#biodata',
+		'current' => 1,
+	],
+	'payment' => [
+		'label' => 'Pembayaran',
+		'url' => 'user/form/payment#biodata'		
+	],
+	'struct' => [
+		'label' => 'Struk',
+		'url' => 'user/form/struct#biodata'
+	],
+];
 
 $config['form'] = 
 [
