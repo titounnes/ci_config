@@ -168,7 +168,7 @@ class MY_Controller extends CI_Controller {
 		$post = [];
 		foreach($config['post'] as $p)
 		{
-			$post[$p] = $this->input->post($p);
+			$post[$p] = $this->security->xss_clean($this->input->post($p));
 		}
 		
 		if($this->form_validation->run() == FALSE)
@@ -216,7 +216,7 @@ class MY_Controller extends CI_Controller {
 			$table = $config['insert']['table'];
 			foreach($config['insert']['field'] as $f)
 			{
-				$field[$f] = $post($f);
+				$field[$f] = $post[$f];
 			}
 			if(isset($config['insert']['session']))
 			{
